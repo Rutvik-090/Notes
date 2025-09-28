@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&family=Pacifico&display=swap");
+
+@import "tailwindcss";
+
+* {
+  font-family: outfit, sans-serif;
+}
+
+.glossary-term {
+  background-color: yellow;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.glossary-term:hover {
+  background-color: orange;
+}
+
+/* Grammar error underline */
+.grammar-error {
+  position: relative;
+  cursor: pointer;
+  text-decoration: underline wavy red;
+  text-decoration-thickness: 2px;
+}
+
+/* Only show one tooltip at a time with pointer-events */
+.grammar-error::after,
+.grammar-error::before {
+  pointer-events: none;
+}
+
+/* Tooltip styling */
+.grammar-error::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 100;
+  max-width: 250px;
+  text-align: center;
+}
+
+/* Tooltip arrow */
+.grammar-error::before {
+  content: "";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Show tooltip on hover */
+.grammar-error:hover::after,
+.grammar-error:hover::before {
+  opacity: 1;
+  pointer-events: auto;
+}
